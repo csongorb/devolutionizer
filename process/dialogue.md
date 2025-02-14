@@ -3,9 +3,9 @@
 ## 2025-02-14 Csongor: Let's do this!
 
 Ohnooo, why this title?!  
-I had to pick one for the repository, I'm really afraid it's going to stick! We'll need to find another one!  
+I had to pick one for the repository, I'm really afraid it's going to stick. We'll need to find another one.  
 
-Hey Hanniyeh,  
+Hey Haniyeh,  
 Sorry for doing it like this, just opening a repo. I still feel that you are looking for your right role in Devolution, and among many other things, I feel strongly that this could be a good one.  
 
 But what do I mean? At the core:  
