@@ -19,3 +19,33 @@ The more I think about it, it has to be a kind of two-step system, as light as p
 
 Lots of open questions, for sure.  
 What do you think?
+
+##2025-03-26 12:00 AM Haniyeh: Hi, Hey, Hello?
+
+
+Hi Csongor,
+Sorry for disappearing all of a sudden. There was the Persian New Year, and then on Sunday, I got food poisoning, and before that, I'm sure there was something else. 
+
+You somehow managed to make communicating via commits sound cool and easy, but somehow I find it not quite so comfortable(?)
+
+So, about the devolutionizing web app, you saw the first prototype 3 weeks ago (again, sorry for disappearing!) It had 2 main issues:
+1. It worked with only the GitHub API
+2. Using HTML/CSS was kind of limiting
+
+I've started using node.js for the backend and React for the frontend. Now we can use any local repo we want and get all the commits even when offline.
+What I've managed to do so far:
+-be able to work with any GIT repo cloned
+-Backend serving real commits
+-Frontend fetching & displaying them
+-Commit selection working
+
+What I'm about to do right now (will be done by Thursday):
+- be able to save selections in local storage (in Editor), so we can keep them even when the page is refreshed.
+- Exhibition mode for "Player"
+- Launch/View files in selected commits
+  
+After these are done, I'll have to polish the UI, using shadcn-ui (maybe?? I have no idea yet? I honestly have no idea what I'm doing half of the time I work with React.)
+
+But! For now, I'll try to upload my progress without sabotaging the code. (Ultimately, I'll just upload a zip file with instructions? for now at least?)
+
+((I WILL NOT DISAPPEAR AGAIN!))
