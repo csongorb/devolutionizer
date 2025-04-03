@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-function Editor({ commits, onSelectCommits }) {
-  const [selected, setSelected] = useState([]);
-
-  const toggleCommit = (commit) => {
-    const isSelected = selected.includes(commit);
-
+function Editor({ commits, selectedHashes, onSelectHashes }) {
+  const toggleCommit = (hash) => {
+    const isSelected = selectedHashes.includes(hash);
     const updated = isSelected
-      ? selected.filter(c => c !== commit)
-      : [...selected, commit];
+      ? selectedHashes.filter(h => h !== hash)
+      : [...selectedHashes, hash];
 
-    setSelected(updated);
+    onSelectHashes(updated);
   };
 
   const selectAll = () => {
-    setSelected(commits);
+    const allHashes = commits.map(commit => commit.hash);
+    onSelectHashes(allHashes);
   };
 
   const clearAll = () => {
-    setSelected([]);
+    onSelectHashes([]);
   };
-
-  // Whenever selected changes, inform App.js
-  useEffect(() => {
-    onSelectCommits(selected);
-  }, [selected]);
 
   return (
     <div>
       <h2>Select Commits to Exhibit</h2>
-
       <button onClick={selectAll}>Select All</button>
       <button onClick={clearAll} style={{ marginLeft: '10px' }}>Clear All</button>
 
@@ -39,8 +31,8 @@ function Editor({ commits, onSelectCommits }) {
             <label>
               <input
                 type="checkbox"
-                checked={selected.includes(commit)}
-                onChange={() => toggleCommit(commit)}
+                checked={selectedHashes.includes(commit.hash)}
+                onChange={() => toggleCommit(commit.hash)}
               />
               <strong>{commit.message}</strong> by {commit.author_name}
             </label>
