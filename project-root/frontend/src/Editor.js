@@ -2,17 +2,14 @@ import React from 'react';
 
 function Editor({ commits, selectedHashes, onSelectHashes }) {
   const toggleCommit = (hash) => {
-    const isSelected = selectedHashes.includes(hash);
-    const updated = isSelected
+    const updated = selectedHashes.includes(hash)
       ? selectedHashes.filter(h => h !== hash)
       : [...selectedHashes, hash];
-
     onSelectHashes(updated);
   };
 
   const selectAll = () => {
-    const allHashes = commits.map(commit => commit.hash);
-    onSelectHashes(allHashes);
+    onSelectHashes(commits.map(c => c.hash));
   };
 
   const clearAll = () => {
@@ -24,7 +21,6 @@ function Editor({ commits, selectedHashes, onSelectHashes }) {
       <h2>Select Commits to Exhibit</h2>
       <button onClick={selectAll}>Select All</button>
       <button onClick={clearAll} style={{ marginLeft: '10px' }}>Clear All</button>
-
       <ul>
         {commits.map(commit => (
           <li key={commit.hash}>

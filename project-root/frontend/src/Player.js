@@ -1,4 +1,3 @@
-// src/Player.js
 import React from 'react';
 
 function Player({ selectedCommits }) {
