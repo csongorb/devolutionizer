@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 function Player({ selectedCommits }) {
-  const [previewMap, setPreviewMap] = useState({}); // store previews by commit+file
+  const [previewMap, setPreviewMap] = useState({});
 
-  const fetchFile = async (hash, filepath) => {
+  const fetchTextFile = async (hash, filepath) => {
     const key = `${hash}:${filepath}`;
 
-    // If already open, close it
     if (previewMap[key]) {
-      setPreviewMap((prev) => {
-        const newMap = { ...prev };
-        delete newMap[key];
-        return newMap;
+      setPreviewMap(prev => {
+        const copy = { ...prev };
+        delete copy[key];
+        return copy;
       });
       return;
     }
@@ -20,10 +19,38 @@ function Player({ selectedCommits }) {
     try {
       const response = await fetch(`http://localhost:3001/file/${hash}/${filepath}`);
       const text = await response.text();
-      setPreviewMap((prev) => ({ ...prev, [key]: { name: filepath, content: text } }));
+      setPreviewMap(prev => ({
+        ...prev,
+        [key]: {
+          type: 'text',
+          name: filepath,
+          content: text,
+        }
+      }));
     } catch (error) {
-      alert('❌ Error loading file: ' + error.message);
+      alert('Error loading file: ' + error.message);
     }
+  };
+
+  const showImage = (hash, filepath) => {
+    const key = `${hash}:${filepath}`;
+    if (previewMap[key]) {
+      setPreviewMap(prev => {
+        const copy = { ...prev };
+        delete copy[key];
+        return copy;
+      });
+      return;
+    }
+
+    setPreviewMap(prev => ({
+      ...prev,
+      [key]: {
+        type: 'image',
+        name: filepath,
+        src: `http://localhost:3001/raw/${hash}/${filepath}`,
+      }
+    }));
   };
 
   return (
@@ -52,28 +79,50 @@ function Player({ selectedCommits }) {
                     {commit.files.map((file, index) => {
                       const key = `${commit.hash}:${file}`;
                       const preview = previewMap[key];
+                      const isText = /\.(js|md|txt|html|json)$/i.test(file);
+                      const isImage = /\.(png|jpg|jpeg|gif)$/i.test(file);
 
                       return (
                         <li key={index}>
                           <div className="flex justify-between items-center">
                             <span>{file}</span>
-                            {/\.(js|md|txt|html|json)$/i.test(file) && (
-                              <button
-                                onClick={() => fetchFile(commit.hash, file)}
-                                className="ml-2 px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                              >
-                                {preview ? 'Hide' : 'View'}
-                              </button>
-                            )}
+                            <div className="flex gap-2">
+                              {isText && (
+                                <button
+                                  onClick={() => fetchTextFile(commit.hash, file)}
+                                  className="px-2 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                                >
+                                  {preview ? 'Hide' : 'View'}
+                                </button>
+                              )}
+                              {isImage && (
+                                <button
+                                  onClick={() => showImage(commit.hash, file)}
+                                  className="px-2 py-1 text-xs bg-pink-500 text-white rounded hover:bg-pink-600 transition"
+                                >
+                                  {preview ? 'Hide' : 'View Image'}
+                                </button>
+                              )}
+                            </div>
                           </div>
 
-                          {/* Inline preview just under file */}
                           {preview && (
                             <div className="mt-2 p-3 bg-gray-100 dark:bg-gray-800 rounded text-sm text-gray-800 dark:text-gray-200">
                               <h4 className="font-bold mb-1">{preview.name}</h4>
-                              <pre className="whitespace-pre-wrap max-h-64 overflow-auto">
-                                {preview.content}
-                              </pre>
+                              {preview.type === 'image' ? (
+                                <div className="w-full max-w-3xl max-h-[400px] overflow-auto rounded border bg-white dark:bg-black p-2">
+                                  <img
+                                    src={preview.src}
+                                    alt={preview.name}
+                                    className="w-full h-auto object-contain"
+                                    style={{ maxHeight: '400px' }}
+                                  />
+                                </div>
+                              ) : (
+                                <pre className="whitespace-pre-wrap max-h-64 overflow-auto">
+                                  {preview.content}
+                                </pre>
+                              )}
                             </div>
                           )}
                         </li>
