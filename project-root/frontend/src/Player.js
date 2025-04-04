@@ -6,7 +6,6 @@ function Player({ selectedCommits }) {
 
   const fetchTextFile = async (hash, filepath) => {
     const key = `${hash}:${filepath}`;
-
     if (previewMap[key]) {
       setPreviewMap(prev => {
         const copy = { ...prev };
@@ -67,11 +66,24 @@ function Player({ selectedCommits }) {
               transition={{ duration: 0.3 }}
               className="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 border border-blue-200 dark:border-gray-600 p-4 rounded-lg shadow-md"
             >
-              <p className="text-lg font-semibold text-gray-800 dark:text-white">{commit.message}</p>
+              {/* Commit Title + Body */}
+              <div className="mb-2">
+                <p className="text-lg font-semibold text-gray-800 dark:text-white">
+                  {commit.message.split('\n')[0]}
+                </p>
+                {commit.message.split('\n').slice(1).join('').trim() && (
+                  <div className="mt-2 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed border-l-4 border-blue-400 dark:border-blue-600 pl-4 italic">
+                    {commit.message.split('\n').slice(1).join('\n')}
+                  </div>
+                )}
+              </div>
+
+              {/* Author + Date */}
               <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                 {commit.author_name} — {new Date(commit.date).toLocaleString()}
               </p>
 
+              {/* Files */}
               {commit.files && commit.files.length > 0 && (
                 <div className="mt-2">
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">📂 Changed Files:</p>
@@ -117,6 +129,7 @@ function Player({ selectedCommits }) {
                             </div>
                           </div>
 
+                          {/* Preview Pane */}
                           {preview && (
                             <div className="mt-2 p-3 bg-gray-100 dark:bg-gray-800 rounded text-sm text-gray-800 dark:text-gray-200">
                               <h4 className="font-bold mb-1">{preview.name}</h4>

@@ -17,13 +17,22 @@ const git = simpleGit('C:/Users/admin/repotest/itisasifyouweremakinglove');
 app.use(cors());
 app.use(express.json());
 
-// ✅ Route: Get commits with changed files
+// ✅ Route: Get commits with changed files + full messages
 app.get('/commits', async (req, res) => {
   try {
     const log = await git.log();
 
     const commitsWithFiles = await Promise.all(
       log.all.map(async (commit) => {
+        // 🎯 Full, multiline message
+        const fullMessage = await git.raw([
+          'show',
+          '--no-patch',
+          '--pretty=%B',
+          commit.hash
+        ]);
+
+        // 📂 Changed files
         const fileOutput = await git.raw([
           'show',
           '--pretty=format:',
@@ -38,10 +47,10 @@ app.get('/commits', async (req, res) => {
 
         return {
           hash: commit.hash,
-          message: commit.message,
+          message: fullMessage.trim(),
           author_name: commit.author_name,
           date: commit.date,
-          files: files,
+          files,
         };
       })
     );
