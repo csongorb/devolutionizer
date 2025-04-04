@@ -81,6 +81,7 @@ function Player({ selectedCommits }) {
                       const preview = previewMap[key];
                       const isText = /\.(js|md|txt|html|json)$/i.test(file);
                       const isImage = /\.(png|jpg|jpeg|gif)$/i.test(file);
+                      const isLaunchable = /\.html$/i.test(file);
 
                       return (
                         <li key={index}>
@@ -102,6 +103,16 @@ function Player({ selectedCommits }) {
                                 >
                                   {preview ? 'Hide' : 'View Image'}
                                 </button>
+                              )}
+                              {isLaunchable && (
+                                <a
+                                  href={`http://localhost:3001/preview/${commit.hash}/${file}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-2 py-1 text-xs bg-green-500 text-white rounded hover:bg-green-600 transition"
+                                >
+                                  Launch 🚀
+                                </a>
                               )}
                             </div>
                           </div>

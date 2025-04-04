@@ -8,6 +8,9 @@ const { execSync } = require('child_process');
 const app = express();
 const PORT = 3001;
 
+// 🔥 Serve entire folder for launching HTML content
+app.use('/preview', express.static(path.join(__dirname, 'temp')));
+
 // 🔗 Path to your Git repo
 const git = simpleGit('C:/Users/admin/repotest/itisasifyouweremakinglove');
 
