@@ -22,7 +22,6 @@ What do you think?
 
 ## 2025-03-26 12:00 AM Haniyeh: Hi, Hey, Hello?
 
-
 Hi Csongor,
 Sorry for disappearing all of a sudden. There was the Persian New Year, and then on Sunday, I got food poisoning, and before that, I'm sure there was something else. 
 
@@ -33,7 +32,9 @@ So, about the devolutionizing web app, you saw the first prototype 3 weeks ago (
 2. Using HTML/CSS was kind of limiting
 
 I've started using node.js for the backend and React for the frontend. Now we can use any local repo we want and get all the commits even when offline.
+
 What I've managed to do so far:
+
 -be able to work with any GIT repo cloned
 -Backend serving real commits
 -Frontend fetching & displaying them
@@ -49,3 +50,31 @@ After these are done, I'll have to polish the UI, using shadcn-ui (maybe?? I hav
 But! For now, I'll try to upload my progress without sabotaging the code. (Ultimately, I'll just upload a zip file with instructions? for now at least?)
 
 ((I WILL NOT DISAPPEAR AGAIN!))
+
+## 2025-04-05 Csongor: Whaaaaaat?!
+
+Dear Haniyeh,  
+this is just... just awesome! Love it! 
+
+I'm speechless, as this is so much exactly like it was in my dream (see above). Thank you!  
+Not sure why no one has made something like this before, it seems to be so obvious. Maybe because you can already do something like this through a Git client, sure. But: this is already sooooooo much better.
+
+Let's talk to the *exhibition team* to streamline this more, obviously still rough around the edges, but the core is already so good. I think the next step is to talk about *settings*, how the Editor handles the data in the Player. Just some VERY rough ideas:
+
+- arrangement of navigation area & versions 
+	- sidebar (left, right) / on top / hub / none
+- what do data to display in the navigation area?
+- aesthetic adjustments
+- folder to store the Player in
+
+Let's talk!
+
+> You somehow managed to make communicating via commits sound cool and easy, but somehow I find it not quite so comfortable(?)
+
+I fully understand that, no question, it's [complicated](https://github.com/csongorb/growingstuff/blob/main/process/dialogue.md). How to build a routine around it? How to progress ideas? I don't have clear solutions for sure. Any ideas how to change? What would work better for you?
+
+> Sorry for disappearing
+
+And about all this:  
+Who cares!? Everything fine, the only thing: communication (see above?).  
+Happy to work with you!
