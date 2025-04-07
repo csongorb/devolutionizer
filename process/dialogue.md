@@ -78,3 +78,37 @@ I fully understand that, no question, it's [complicated](https://github.com/cson
 And about all this:  
 Who cares!? Everything fine, the only thing: communication (see above?).  
 Happy to work with you!
+
+## 2025-04-07 Haniyeh: I just realized we only have 5 weeks  left!?!?! (Is it enough time?!)
+Hi!  
+I still don't know fully understand why someone would use this over a Git client. It IS easier to use and more intuitive i guess.
+
+As we discussed on Friday, the web app is in a semi-good place right now. So far we have:
+
+- Local React frontend + Node backend  
+- Commit viewer (with full messages!)  
+- Editor: select commits  
+- Player: view commit details, launch HTML games  
+- File preview for text + images  
+- LocalStorage to remember selections  
+- Setup guide  
+
+I get an error when I try to open older HTML files. Could it be because the file path was changed? If the file was renamed or moved in a later commit, there is no way to actually "fix" it. Haven’t figured that out yet...
+
+Other than that, there are a few tweaks that I *know* should be implemented for the exhibition:
+
+- Dark mode + clean UI with Tailwind  
+- Offline Mode (if the exhibition won’t have internet or Node installed)  
+- Player Mode: auto-launch Player + hide navigation + prevent edits  
+- Add a logo + visual header  
+- Smoother scrolling  
+- Support .mp4 preview?
+
+I can probably try to figure out how to make it look nice and fancy with Tailwind. Shouldn’t be that hard. But I woudn't say no to an easier solution.
+
+I'm pretty sure more bugs and errors will show themselves once the others test the app.
+
+Okay bye. (Still weird to talk in the repo, but that's how most new things feel like, right? Pippin has definitely managed to have full conversations with himself this way.)
+
+
+
