@@ -79,7 +79,8 @@ And about all this:
 Who cares!? Everything fine, the only thing: communication (see above?).  
 Happy to work with you!
 
-## 2025-04-07 Haniyeh: I just realized we only have 5 weeks  left!?!?! (Is it enough time?!)
+## 2025-04-07 Haniyeh: I just realized we only have 5 weeks left!?!?! (Is it enough time?!)
+
 Hi!  
 I still don't know fully understand why someone would use this over a Git client. It IS easier to use and more intuitive i guess.
 
@@ -110,5 +111,13 @@ I'm pretty sure more bugs and errors will show themselves once the others test t
 
 Okay bye. (Still weird to talk in the repo, but that's how most new things feel like, right? Pippin has definitely managed to have full conversations with himself this way.)
 
+## 2025-04-08 Csongor: The Core?
 
+Feel free to challenge me / this with questions!  
+I get it, it is very close to being *just* a git client. But a Git client is nerdy. This (the player) is / can be cool. You know, not Windows, but Apple. And I really, really strongly believe that this idea of showing versions *next to* each other, at the same time, not just after each other, is special.  
+The difference is small, but important, we have to emphasize it! And we must not forget it, because if we do... yeah, its just a Git client.
 
+Just an idea (sorry, one of those again):  
+What if we made more of a distinction between the Editor and the Player? Any chance to make the Editor an online tool that eats a local (or online?) repository and makes an offline Player out of it? Wouldn't that almost make things easier in the general setup?
+
+Let's talk (on Thursday?)!
