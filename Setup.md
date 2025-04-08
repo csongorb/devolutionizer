@@ -1,4 +1,3 @@
-
 # HOW TO SET UP AND USE THE APP
 
 ---
