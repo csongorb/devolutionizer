@@ -143,9 +143,16 @@ The good news is that if we manage to do this, all we'd have to do next is work 
 
 Also, This is going to sound soooo cheesy but I think I get it now. Devolutionizer is more than a git client because its purpose is not just accessing the commits, it's to make people *feel* them. Is this the message you've always been trying to send with Devolution?  Am I getting too emotionally invested in this?(???)
 
+## 2025-04-11 Csongor: Emotions!
 
+Whaaat, can you be emotionally too invested in a project? How should that be possible!?  
+Ok, I get it, maybe it's possible, let's not go there (or we need to, I maean: 2am?! take care!). But just happy to see that it has *clicked*, at least thats my impression. 
 
+Basically a yesss to all the above described things, an additional suggestion:  
+Maybe you can externalize the settings into an XML-file (or whatever), this way the whole system / Player would be more flexible. The Editor creates / edits the settings file, the Player reads and interprets it.  
+But yes, this could take more time, the other solution seems to be faster / hard-coded for sure.
 
+And maybe one more, to reach even more flexibility:  
+Try to make folder-names for human-readable (like `/versions/yymmdd_hhmm`), that way both, the whole player, but also each of the versions would be easily approachable.
 
-
-
+But it the core yessssssssss!
