@@ -121,3 +121,31 @@ Just an idea (sorry, one of those again):
 What if we made more of a distinction between the Editor and the Player? Any chance to make the Editor an online tool that eats a local (or online?) repository and makes an offline Player out of it? Wouldn't that almost make things easier in the general setup?
 
 Let's talk (on Thursday?)!
+
+## 2025-04-11 Haniyeh: As If We Were Making A Multi-version Commit Curation Devolutionizer
+
+Hi!
+Ok so, There are a couple of things that I should add/change (apart from the features we mentioned before):
+
+**Separate the app into two roles:**
+- `Editor`: online or local interface to **curate** the repo
+- `Player`: self-contained **offline viewer** of the curated version
+
+The Editor will export a full  `/player/` folder that's basically bundled up.  `index.html`, commit folders (`/tmp/<hash>/`), styling scripts, everything.
+It will also make the setup waaaay easier for the exhibition. offline and stable.
+
+ **Sidebar with version-based commit selection**
+ I thought about it and honestly I think it's doable (OF COURSE it's doable in general, I mean for me...) The versions will be stored as a simple mapping. Some commits are highlighted in each tmp. The structure will be more or less the same. You will have to choose the commits in Editor, but, in addition to that, you will be able to assign selected commits to a repo version. Then save the versions. (since we want to make the player completely offline, this will be a config file I think so it's not local anymore). Of course we should also be able to delete/edit/rename the existing versions.
+
+ This all looks perfectly fine on paper, But 2 A.M Haniyeh always thinks she can do anything. So, I'll test some stuff this weekend and let you know how it goes by Monday. Hopefully sooner.
+
+The good news is that if we manage to do this, all we'd have to do next is work on the interface. The tricky part will be DONE.
+
+Also, This is going to sound soooo cheesy but I think I get it now. Devolutionizer is more than a git client because its purpose is not just accessing the commits, it's to make people *feel* them. Is this the message you've always been trying to send with Devolution?  Am I getting too emotionally invested in this?(???)
+
+
+
+
+
+
+
