@@ -1,38 +1,18 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  useLocation,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Editor from './Editor';
 import Player from './Player';
 
-// Wrap app in a component that lets us use useLocation
-function AppWrapper() {
-  return (
-    <Router>
-      <App />
-    </Router>
-  );
-}
-
 function App() {
-  const location = useLocation();
-  const isPlayerPage = location.pathname === '/player';
-
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem('darkMode') === 'true';
-  });
-
+  const [commits, setCommits] = useState([]);
   const [selectedHashes, setSelectedHashes] = useState(() => {
     const saved = localStorage.getItem('selectedCommits');
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [commits, setCommits] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -40,14 +20,16 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
-    localStorage.setItem('darkMode', darkMode);
   }, [darkMode]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/commits')
-      .then((res) => setCommits(res.data))
-      .catch((err) => console.error('❌ Error fetching commits:', err));
+    axios.get('http://localhost:3001/commits')
+      .then(res => {
+        setCommits(res.data);
+      })
+      .catch(err => {
+        console.error('❌ Error fetching commits:', err);
+      });
   }, []);
 
   useEffect(() => {
@@ -58,60 +40,39 @@ function App() {
     setSelectedHashes(newHashes);
   };
 
-  const selectedCommits = commits.filter((c) =>
-    selectedHashes.includes(c.hash)
-  );
-
   return (
-    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
-      {/* 🌙 Dark Mode Toggle */}
-      <div className="flex justify-end p-4">
+    <Router>
+      <div className="flex justify-end mb-4 p-2">
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="px-4 py-2 rounded bg-gray-800 text-white dark:bg-white dark:text-gray-900 shadow hover:scale-105 transition"
+          className="text-sm px-3 py-1 bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded shadow hover:scale-105 transition"
         >
           {darkMode ? '🌞 Light Mode' : '🌙 Dark Mode'}
         </button>
       </div>
 
-      <div className="max-w-4xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-4 text-center">💿 Devolutionizer</h1>
-
-        {/* Only show Editor link if NOT in /player */}
-        <nav className="flex justify-center space-x-6 mb-8">
-          {!isPlayerPage && (
-            <Link to="/editor" className="text-blue-500 hover:underline">
-              Editor
-            </Link>
-          )}
-          <Link to="/player" className="text-blue-500 hover:underline">
-            Player
-          </Link>
+      <div className="max-w-6xl mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-4">Devolutionizer</h1>
+        <nav className="space-x-4 mb-6">
+          <Link to="/editor" className="text-blue-500 hover:underline">Editor</Link>
+          <Link to="/player" className="text-blue-500 hover:underline">Player</Link>
         </nav>
-
         <Routes>
-          <Route
-            path="/editor"
-            element={
-              <Editor
-                commits={commits}
-                selectedHashes={selectedHashes}
-                onSelectHashes={handleSelectHashes}
-              />
-            }
-          />
-          <Route
-            path="/player"
-            element={<Player selectedCommits={selectedCommits} />}
-          />
-          <Route
-            path="/"
-            element={<p className="text-center">Welcome! Choose Editor or Player above 💌</p>}
-          />
+          <Route path="/editor" element={
+            <Editor
+              commits={commits}
+              selectedHashes={selectedHashes}
+              onSelectHashes={handleSelectHashes}
+            />
+          } />
+          <Route path="/player" element={
+            <Player allCommits={commits} />
+          } />
+          <Route path="/" element={<p>Welcome! Choose Editor or Player above.</p>} />
         </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
-export default AppWrapper;
+export default App;
